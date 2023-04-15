@@ -39,6 +39,51 @@
 
     <div class="container">
         <div class="column mt-5">
+          <!-- Button to copy URL -->
+<button class="btn btn-primary" id="copy-btn" data-toggle="tooltip" data-placement="bottom" title="Click to copy URL">Copy URL</button>
+
+<script>
+  // Get button element and add click event listener
+  const btn = document.getElementById('copy-btn');
+  btn.addEventListener('click', copyToClipboard);
+
+  function copyToClipboard() {
+    const url = window.location.href; // get the current page URL
+    navigator.clipboard.writeText(url) // copy URL to clipboard
+      .then(() => {
+        // Change button color to green and update text to "Copied"
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-success');
+        btn.innerText = 'Copied!';
+        btn.setAttribute('data-original-title', 'URL copied to clipboard');
+        btn.setAttribute('title', 'URL copied to clipboard');
+        $(btn).tooltip('show');
+        setTimeout(() => {
+          // Reset button color and text after 3 seconds
+          btn.classList.remove('btn-success');
+          btn.classList.add('btn-primary');
+          btn.innerText = 'Copy URL';
+          btn.removeAttribute('data-original-title');
+          btn.removeAttribute('title');
+          $(btn).tooltip('hide');
+        }, 3000);
+      })
+      .catch(err => {
+        console.error(`Error copying to clipboard: ${err}`);
+        // Update tooltip message and show tooltip
+        btn.setAttribute('data-original-title', 'Error copying URL');
+        btn.setAttribute('title', 'Error copying URL');
+        $(btn).tooltip('show');
+        setTimeout(() => {
+          // Hide tooltip after 3 seconds
+          btn.removeAttribute('data-original-title');
+          btn.removeAttribute('title');
+          $(btn).tooltip('hide');
+        }, 3000);
+      });
+  }
+</script>
+
             <div class="col-6">
                 <div>
                     <p><strong>Repair done by</strong>: <%= workshop.workshopName %></p>
@@ -48,3 +93,12 @@
 
                 </div>
     </div>
+    </div>
+    </div>
+
+    
+    
+    
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+  </body>
