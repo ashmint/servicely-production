@@ -1,0 +1,85 @@
+<%- include('partials/header') -%>
+<div class="container">
+  <div class="row mt-5">
+      <div class="col-6">
+          <div>
+              <p><strong>User Name</strong>: <%= user.userName %></p>
+              <p><strong>Email</strong>: <%= user.email %></p>
+              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+          </div>
+          <div class="mt-5">
+            <h2>Create a customer</h2>
+            <form action="/workshop/createCustomer" method="POST">
+              <div class="mb-3">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input type="text" class="form-control" id="firstName" name="firstName">
+              </div>
+              <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="lastName">
+              </div>
+              <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+              </div>
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea class="form-control" id="address" name="address"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+            </form>
+          </div>
+      </div>
+
+      
+      <div class = col-6>
+      <h2>Customers</h2>
+      <ul class="list-group list-group-light">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-bold">John Doe</div>
+            <div class="text-muted">john.doe@gmail.com</div>
+          </div>
+          <span class="badge rounded-pill text-bg-primary">Active</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-bold">Alex Ray</div>
+            <div class="text-muted">alex.ray@gmail.com</div>
+          </div>
+          <span class="badge rounded-pill text-bg-success">Onboarding</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-bold">Kate Hunington</div>
+            <div class="text-muted">kate.hunington@gmail.com</div>
+          </div>
+          <span class="badge rounded-pill text-bg-warning">Awaiting</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-bold">John Yeoman</div>
+            <div class="text-muted">jmg@gmail.com</div>
+          </div>
+          <span class="badge rounded-pill text-bg-danger">Awaiting</span>
+        </li>
+      </ul>
+      </div>
+            <div class="col-6">
+              <ul class="row list-unstyled">
+              <% for(var i=0; i<posts.length; i++) {%>
+                <li class="col-6 justify-content-between mt-5">
+                  <a href="/post/<%= posts[i]._id%>">
+                    <img class="img-fluid" src="<%= posts[i].image%>">
+                  </a>
+                </li>
+              <% } %>
+              </ul>
+              <div class="row justify-content-center mt-5">
+                <a class="btn btn-primary" href="/feed">Return to Feed</a>
+              </div>  
+            </div>  
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') -%>
