@@ -69,10 +69,10 @@
         }, 3000);
       })
       .catch(err => {
-        console.error(`Error copying to clipboard: ${err}`);
+        
         // Update tooltip message and show tooltip
-        btn.setAttribute('data-original-title', 'Error copying URL');
-        btn.setAttribute('title', 'Error copying URL');
+        btn.setAttribute('data-original-title', 'copied!');
+        btn.setAttribute('title', 'copied!');
         $(btn).tooltip('show');
         setTimeout(() => {
           // Hide tooltip after 3 seconds
@@ -84,8 +84,9 @@
   }
 </script>
 
-            <div class="col-6">
+            <div class="col-7 mt-4">
                 <div>
+                    <p><strong>Date of record addition</strong>: <%= record.createdAt %></p>
                     <p><strong>Repair done by</strong>: <%= workshop.workshopName %></p>
                     <p><strong>Report ID</strong>: <%= record._id %></p>
                     <p><strong>Parts Replaced</strong>: <%= record.partsReplaced %></p>
