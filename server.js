@@ -15,7 +15,7 @@ const userRoutes = require("./routes/user");
 const vehicleRoutes = require("./routes/vehicle");
 const recordRoutes = require("./routes/record");
 
-const PORT = process.env.PORT || 3000
+
 
 
 //Use .env file in config folder
@@ -67,12 +67,11 @@ app.use("/workshop", workshopRoutes)
 app.use("/user", userRoutes)
 app.use("/vehicle", vehicleRoutes)
 app.use("/record", recordRoutes)
-
 //Server Running
 
 
 connectDB().then(() => {
-  app.listen(PORT, () => {
+  app.listen(process.env.PORT || 3000, () => {
     console.log("Server is running, you better catch it!");
   });
   
